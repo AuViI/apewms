@@ -95,6 +95,10 @@ if (isset($_POST["function"])){
             $prep->execute();
         }
     }
+
+    if ($_POST["function"]=="tablejson") {
+        apiprint("tablejson...");
+    }
 }
 
 
