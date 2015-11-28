@@ -118,6 +118,8 @@ if (isset($_POST["function"])){
             $result->free();
             $con->close();
             $json .= "]";
+            $json = str_replace(",}","}",$json);
+            $json = str_replace(",]","]",$json);
             echo $json;
         }
     }
