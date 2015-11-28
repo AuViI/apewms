@@ -74,10 +74,23 @@ if (isset($_POST["function"])){
     }
 
     if($_POST["function"]=="deloldest"){
-        $query = "DELETE FROM entries WHERE fid = ? ORDER BY id ASC LIMIT 1";
+        $query1 = "SELECT remote, src FROM entries WHERE fid = ? ORDER BY id ASC LIMIT 1";
+        $query2 = "DELETE FROM entries WHERE fid = ? ORDER BY id ASC LIMIT 1";
         if ($valid){
             $con = getCon();
-            $prep = $con->prepare($query);
+
+            $prep = $con->prepare($query1);
+            $prep->bind_param('s',$_POST["target"]);
+            $prep->bind_result($r, $s);
+            $prep->execute();
+            $prep->fetch();
+            $prep->close();
+
+            if ($r == 0){
+                unlink("../".$s);
+            }
+
+            $prep = $con->prepare($query2);
             $prep->bind_param('s', $_POST["target"]);
             $prep->execute();
         }
