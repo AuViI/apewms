@@ -111,9 +111,9 @@ if (isset($_POST["function"])){
             while($row = $result->fetch_assoc()){
                 $json .= "{";
                 foreach ($row as $key => $value) {
-                    $json .= "\"".$key."\":\"".$value."\",";
+                    $json .= "\"".$con->real_escape_string($key)."\":\"".$con->real_escape_string($value)."\",";
                 }
-                $json .= "}";
+                $json .= "},";
             }
             $result->free();
             $con->close();
