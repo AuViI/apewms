@@ -109,7 +109,6 @@ if (isset($_POST["function"])){
             apiprint("precon");
             $con = getCon();
             $prep = $con->prepare("SELECT * FROM ?");
-            apiprint($prep);
             $prep->bind_param('s',$tbl);
             $prep->bind_result($row);
             apiprint("preex");
