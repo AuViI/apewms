@@ -108,14 +108,14 @@ if (isset($_POST["function"])){
             $row = array();
             apiprint("precon");
             $con = getCon();
-            $prep = $con->prepare("SELECT * FROM ?");
-            $prep->bind_param('s',$tbl);
-            $prep->bind_result($row);
+            $stmt = $con->prepare("SELECT * FROM ?");
+            $stmt->bind_param('s',$tbl);
+            $stmt->bind_result($row);
             apiprint("preex");
-            $prep->execute();
+            $stmt->execute();
             apiprint("postex");
             $json = "[";
-            while($prep->fetch()){
+            while($stmt->fetch()){
                 apiprint("inloop");
                 $json += "{";
                 foreach ($row as $key => $value) {
