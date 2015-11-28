@@ -1,4 +1,5 @@
 <?
+// FIXME correct spelling, lowercase
 
 // Contains credential function:
 // getServer(), getUser(), getPass(), getData(), getBaseDir()
@@ -11,6 +12,7 @@ function getCon(){
     $user = getUser();
     $pass = getPass();
     $data = getData();
+    // TODO create Tables if not exist
     return new mysqli($server, $user, $pass, $data);
 }
 
@@ -18,7 +20,7 @@ function getFolderArray(){
     $folders = array();
     $con = getCon();
     if ($con->connect_error) {
-        echo "Database Error";
+        println("database error");
     }
     $prep = $con->prepare("SELECT id, folder FROM folders");
     $prep->bind_result($number,$folder);
@@ -83,7 +85,7 @@ function directCheckSessionData(){
     if(isset($_SESSION["username"]) && isset($_SESSION["session"])){
         return checkSessionData($_SESSION["username"], $_SESSION["session"]);
     }
-    println("Data NOT available");
+    println("data <b>not</b> available");
     return false;
 }
 
@@ -91,16 +93,12 @@ function directCheckSessionData(){
 function generateSessionData($username){
     $con = getCon();
     if ($con->connect_error) {
-        echo "Database Error";
+        println("database error");
     }
-    println("Pre Prepare");
     $prep = $con->prepare('UPDATE logins SET session=? WHERE username=?');
     $prep->bind_param('ss', $hash, $username);
-    println("Pre Hash");
     $hash=hash("sha256", time().$username);
-    println("Post Hash");
     $prep->execute();
-    println("Execute");
     return $hash;
     $con->close();
 }
@@ -131,8 +129,6 @@ function validLogin(){
         //used Form generate session code
         $username = $_POST["username"];
         $password = $_POST["password"];
-        // println($username); DAFUK?
-        // println($password);
         //write session code in database, after confirm
         if(!checkLoginData($username, $password)){
             //if confirm fails return false
@@ -157,7 +153,7 @@ function getFilesInFolderSQL($fid){
     $frames = array();
     $con = getCon();
     if ($con->connect_error) {
-        echo "Database Error";
+        println("database error");
     }
     $prep = $con->prepare("SELECT content FROM entries WHERE fid=?");
     $prep->bind_param('i',$fid);
@@ -175,7 +171,7 @@ function getFilesInFolderSQL($fid){
 function getSourceInFolderSQL($fid){$frames = array();
     $con = getCon();
     if ($con->connect_error) {
-        echo "Database Error";
+        println("database error");
     }
     $prep = $con->prepare("SELECT src FROM entries WHERE fid=?");
     $prep->bind_param('i',$fid);
@@ -194,7 +190,7 @@ function getInfoFilesInFolderSQL($fid){
     $files = array();
     $con = getCon();
     if ($con->connect_error) {
-        echo "Database Error";
+        println("database error");
     }
     $prep = $con->prepare("SELECT id, content, src, created  FROM entries WHERE fid=?");
     $prep->bind_param('i',$fid);
