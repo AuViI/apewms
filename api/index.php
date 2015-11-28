@@ -103,22 +103,19 @@ if (isset($_POST["function"])){
 
     if ($_POST["function"]=="tablejson") {
         $tbl = $_POST["table"];
-        apiprint($tbl);
         if($valid && $tbl == "folders" || $tbl == "entries" || $tbl == "logins"){
             $row = array();
             $con = getCon();
-            $stmt = $con->prepare("SELECT * FROM " . $tbl);
-            $stmt->bind_result($row);
-            $stmt->execute();
+            $result = $con->query("SELECT * FROM " . $tbl);
             $json = "[";
-            while($stmt->fetch()){
-                apiprint("inloop");
+            while($row = $result->fetch_assoc()){
                 $json += "{";
                 foreach ($row as $key => $value) {
                     $json += "\"".$key."\":\"".$value."\",";
                 }
                 $json += "}";
             }
+            $result->free();
             $con->close();
             $json += "]";
             echo $json;
