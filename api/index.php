@@ -72,6 +72,7 @@ if (isset($_POST["function"])){
                 $prep->bind_param('sss', $_POST["target"], $content, $src);
                 $prep->execute();
                 apiprint("executed");
+                $con->close();
             }
         }
         return;
@@ -82,7 +83,6 @@ if (isset($_POST["function"])){
         $query2 = "DELETE FROM entries WHERE fid = ? ORDER BY id ASC LIMIT 1";
         if ($valid){
             $con = getCon();
-
             $prep = $con->prepare($query1);
             $prep->bind_param('s',$_POST["target"]);
             $prep->bind_result($r, $s);
@@ -97,6 +97,7 @@ if (isset($_POST["function"])){
             $prep = $con->prepare($query2);
             $prep->bind_param('s', $_POST["target"]);
             $prep->execute();
+            $con->close();
         }
     }
 
@@ -104,19 +105,18 @@ if (isset($_POST["function"])){
         $tbl = $_POST["table"];
         apiprint($tbl);
         if($valid){
+            $row = array();
             apiprint("precon");
             $con = getCon();
-            if ($con->connect_error) {
-                println("database error");
-            }
             $prep = $con->prepare("SELECT * FROM ?");
             apiprint($prep);
             $prep->bind_param('s',$tbl);
+            $prep->bind_result($row);
             apiprint("preex");
             $prep->execute();
             apiprint("postex");
             $json = "[";
-            while($row = $prep->fetch_array(MYSQLI_ASSOC)){
+            while($prep->fetch()){
                 apiprint("inloop");
                 $json += "{";
                 foreach ($row as $key => $value) {
