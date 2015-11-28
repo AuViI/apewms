@@ -104,16 +104,12 @@ if (isset($_POST["function"])){
     if ($_POST["function"]=="tablejson") {
         $tbl = $_POST["table"];
         apiprint($tbl);
-        if($valid){
+        if($valid && $tbl == "folders" || $tbl == "entries" || $tbl == "logins"){
             $row = array();
-            apiprint("precon");
             $con = getCon();
-            $stmt = $con->prepare("SELECT * FROM ?");
-            $stmt->bind_param('s',$tbl);
+            $stmt = $con->prepare("SELECT * FROM " . $tbl);
             $stmt->bind_result($row);
-            apiprint("preex");
             $stmt->execute();
-            apiprint("postex");
             $json = "[";
             while($stmt->fetch()){
                 apiprint("inloop");
