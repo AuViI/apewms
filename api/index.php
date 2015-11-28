@@ -97,7 +97,24 @@ if (isset($_POST["function"])){
     }
 
     if ($_POST["function"]=="tablejson") {
-        apiprint("tablejson...");
+        $tbl = $_POST["table"];
+        if($valid){
+            $con = getCon();
+            $prep = $con->prepare("SELECT * FROM ?");
+            $prep->bind_param('s',$tbl);
+            $prep->execute();
+            $json = "[";
+            while($row = $prep->fetch_array(MYSQLI_ASSOC)){
+                $json += "{";
+                foreach ($row as $key => $value) {
+                    $json += "\"".$key."\":\"".$value."\",";
+                }
+                $json += "}";
+            }
+            $con->close();
+            $json += "]";
+            return $json;
+        }
     }
 }
 
