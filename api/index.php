@@ -109,15 +109,15 @@ if (isset($_POST["function"])){
             $result = $con->query("SELECT * FROM " . $tbl);
             $json = "[";
             while($row = $result->fetch_assoc()){
-                $json += "{";
+                $json .= "{";
                 foreach ($row as $key => $value) {
-                    $json += "\"".$key."\":\"".$value."\",";
+                    $json .= "\"".$key."\":\"".$value."\",";
                 }
-                $json += "}";
+                $json .= "}";
             }
             $result->free();
             $con->close();
-            $json += "]";
+            $json .= "]";
             echo $json;
         }
     }
