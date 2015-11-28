@@ -113,7 +113,7 @@ if (isset($_POST["function"])){
             }
             $con->close();
             $json += "]";
-            return $json;
+            echo $json;
         }
     }
 }
