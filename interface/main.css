@@ -1,0 +1,40 @@
+body{
+    background-color: #E6E6E6;
+}
+div{
+    border-radius: .5em;
+}
+#holder{
+    margin: auto auto;
+    width: 80em;
+}
+#menu{
+    background-color: #66ADFA;
+    padding: 0 1em;
+    margin: 0 0;
+    float: left;
+    width: 13em;
+}
+#page{
+    background-color: #C6C6C6;
+    margin-left: 15.5em;
+    padding: .15em .5em .5em .5em;
+
+}
+.center{
+    text-align: center;
+}
+form table{
+    background-color: #ABABAB;
+    border-radius: .3em;
+}
+td input{
+    box-sizing:border-box;
+    width: 100%;
+    margin: 0 0;
+}
+@media (max-width: 82em){
+    #holder{
+        width: 100%;
+    }
+}

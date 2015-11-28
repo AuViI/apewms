@@ -1,0 +1,6 @@
+## ignore DATA
+*/
+
+## don't ignore error
+!error.php
+!.gitignore
