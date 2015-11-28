@@ -28,7 +28,7 @@ if (isset($_POST["function"])){
         return;
     }
 
-    if ($_POST["debug"]=="true") {
+    if (isset($_POST["debug"]) && $_POST["debug"]=="true") {
         apiprintall();
     }
 
@@ -106,6 +106,9 @@ if (isset($_POST["function"])){
         if($valid){
             apiprint("precon");
             $con = getCon();
+            if ($con->connect_error) {
+                println("database error");
+            }
             $prep = $con->prepare("SELECT * FROM ?");
             apiprint($prep);
             $prep->bind_param('s',$tbl);
