@@ -28,6 +28,10 @@ if (isset($_POST["function"])){
         return;
     }
 
+    if ($_POST["debug"]=="true") {
+        apiprintall();
+    }
+
     if ($_POST["function"]=="dirsize") {
         $query = "SELECT COUNT(*) FROM entries WHERE fid=?";
         $con = getCon();
@@ -98,10 +102,12 @@ if (isset($_POST["function"])){
 
     if ($_POST["function"]=="tablejson") {
         $tbl = $_POST["table"];
+        apiprint($tbl);
         if($valid){
             apiprint("precon");
             $con = getCon();
             $prep = $con->prepare("SELECT * FROM ?");
+            apiprint($prep);
             $prep->bind_param('s',$tbl);
             apiprint("preex");
             $prep->execute();
