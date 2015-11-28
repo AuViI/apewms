@@ -99,12 +99,16 @@ if (isset($_POST["function"])){
     if ($_POST["function"]=="tablejson") {
         $tbl = $_POST["table"];
         if($valid){
+            apiprint("precon");
             $con = getCon();
             $prep = $con->prepare("SELECT * FROM ?");
             $prep->bind_param('s',$tbl);
+            apiprint("preex");
             $prep->execute();
+            apiprint("postex");
             $json = "[";
             while($row = $prep->fetch_array(MYSQLI_ASSOC)){
+                apiprint("inloop");
                 $json += "{";
                 foreach ($row as $key => $value) {
                     $json += "\"".$key."\":\"".$value."\",";
