@@ -8,10 +8,13 @@ function apiprintall(){
     foreach ($_POST as $key => $value) {
         apiprint($key . " ==POST=> " . $value);
     }
+    foreach ($_GET as $key => $value) {
+        apiprint($key . " ==GET==> " . $value);
+    }
     foreach ($_FILES as $key => $value) {
-        apiprint($key . " ==FILES=> ".$value);
+        apiprint($key . " =FILES=> ".$value);
         foreach ($value as $key => $value) {
-            apiprint("...".$key." --file-> ".$value);
+            apiprint("... ".$key." --file-> ".$value);
         }
     }
 }
