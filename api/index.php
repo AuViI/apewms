@@ -54,6 +54,7 @@ if (isset($_POST["function"])){
             $filename = basename($_FILES['file']['name']);
             $uploadfile = $uploaddir . $filename;
             apiprint("trying to upload");
+            apiprint("uploadfile: ".$uploadfile);
             if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
                 apiprint("uploaded");
                 $src="data/$dir/$filename";
