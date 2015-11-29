@@ -55,7 +55,7 @@ if (isset($_POST["function"])){
             $uploadfile = $uploaddir . $filename;
             apiprint("trying to upload");
             if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
-                apiprint("uploaded")
+                apiprint("uploaded");
                 $src="data/$dir/$filename";
                 $content = "<iframe src='$src' class='full'></iframe>";
                 foreach ($imgs as $key => $value) {
@@ -77,7 +77,7 @@ if (isset($_POST["function"])){
                 apiprint("executed");
                 $con->close();
             } else {
-                apiprint("upload failed")
+                apiprint("upload failed");
             }
         }
         return;
