@@ -2,6 +2,7 @@
 
 include("../interface/exec/pulllib.php");
 include("../interface/exec/string.php");
+include("../interface/exec/auth.php");
 $valid = apilogin();
 
 function apiprintall(){
@@ -50,7 +51,7 @@ if (isset($_POST["function"])){
         apiprint($valid);
         if ($valid){
             $dir = getFolderArray()[ (int) $_POST["target"] ];
-            $uploaddir = '/home/pi/wms.viwetter.de/data/'.$dir . "/";
+            $uploaddir = getBaseDir() . $dir . "/";
             $filename = basename($_FILES['file']['name']);
             $uploadfile = $uploaddir . $filename;
             apiprint("trying to upload");
