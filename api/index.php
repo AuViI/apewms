@@ -47,12 +47,15 @@ if (isset($_POST["function"])){
 
     if ($_POST["function"]=="newcycle") {
         apiprintall();
+        apiprint($valid);
         if ($valid){
             $dir = getFolderArray()[ (int) $_POST["target"] ];
             $uploaddir = '/home/pi/wms.viwetter.de/data/'.$dir . "/";
             $filename = basename($_FILES['file']['name']);
             $uploadfile = $uploaddir . $filename;
+            apiprint("trying to upload");
             if (move_uploaded_file($_FILES['file']['tmp_name'], $uploadfile)) {
+                apiprint("uploaded")
                 $src="data/$dir/$filename";
                 $content = "<iframe src='$src' class='full'></iframe>";
                 foreach ($imgs as $key => $value) {
@@ -73,6 +76,8 @@ if (isset($_POST["function"])){
                 $prep->execute();
                 apiprint("executed");
                 $con->close();
+            } else {
+                apiprint("upload failed")
             }
         }
         return;
