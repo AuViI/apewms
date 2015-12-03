@@ -18,7 +18,7 @@ if($valid && isset($_GET["fid"])){
         sendError();
 
     $dir="./data/$folders[$fid]";
-    $frames = getSourceInFolderSQL($fid);
+    $frames = getFilesInFolderSQL($fid);
 }else{
 	sendError();
 }
@@ -42,7 +42,7 @@ var num = 0;
 var wms = document.getElementById("wms");
 var frames = [<?
 foreach ($frames as $key => $frame) {
-    print("\"".pathToBase64($frame)."\",");
+    print("\"".$frame."\",");
 }
 // WARNING HARDCODING SPEED VARIABLE
 // changing every 20 seconds
