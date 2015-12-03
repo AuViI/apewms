@@ -1,6 +1,6 @@
 <?
 
-require("auth.php");
+require_once("auth.php");
 
 $logname = "wms.log";
 
