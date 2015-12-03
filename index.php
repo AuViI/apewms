@@ -45,8 +45,11 @@ foreach ($frames as $key => $frame) {
     print("\"".$frame."\",");
 }
 // WARNING HARDCODING SPEED VARIABLE
-// changing every 20 seconds
+// changing every n seconds
 $speed = 14;
+if ( $fid == 7 ){ // Wetter
+	$speed = 7;
+}
 ?>]
 if(frames.length==0){
     frames[0]="Es liegen für diesen Ordner keine Inhalte auf dem Server vor.";
@@ -58,20 +61,20 @@ if(frames.length==0){
 		}
 	}
 	for (var i = 0; i < frames.length; i++) {
-		wms.children[i].setAttribute("class","loading")
+		wms.children[i].setAttribute("class","loading");
 	}
-	wms.children[0].setAttribute("class","full")
+	wms.children[0].setAttribute("class","full");
 }
 
 window.setInterval(function(){
         if(num >= frames.length){
             num =0;
         }
-		wms.children[num].setAttribute("class","full")
+		wms.children[num].setAttribute("class","full");
 		if (num>0){
 			wms.children[(num-1)%frames.length].setAttribute("class","loading");
 		} else {
-			wms.children[frames.length-1].setAttribute("class","loading")
+			wms.children[frames.length-1].setAttribute("class","loading");
 		}
         num = num+1;
     }, <? echo $speed * 1000; ?>);
