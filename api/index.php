@@ -86,7 +86,7 @@ if (isset($_POST["function"])){
                 apilog("log","uploaded: ". mysql_real_escape_string($filename));
             } else {
                 apiprint("upload failed");
-                apilog("error", "failed uploading file");
+                apilog("error", "failed uploading file (api)");
             }
         }
         return;

@@ -1,5 +1,6 @@
 <?
 include("pulllib.php");
+include("myio.php");
 function startsWith($haystack, $needle) {
     // search backwards starting from haystack length characters from the end
     return $needle === "" || strrpos($haystack, $needle, -strlen($haystack)) !== FALSE;
@@ -49,6 +50,7 @@ if($remote){
     } else {
         $fail = true;
         $answer = "Uploadfehler";
+        apilog("error", "failed uploading file (web)");
     }
 }
 
@@ -57,12 +59,14 @@ if(!$fail){
     if ($con->connect_error) {
         echo "Database Error";
         $answer = "Datenbankfehler";
-    }
-    $prep = $con->prepare("INSERT INTO entries (id, fid, remote, content, src, created) VALUES (NULL, ?, ?, ?, ?, CURRENT_TIMESTAMP);");
+    } else {
+        $prep = $con->prepare("INSERT INTO entries (id, fid, remote, content, src, created) VALUES (NULL, ?, ?, ?, ?, CURRENT_TIMESTAMP);");
 
-    $prep->bind_param('siss', $fid, $i, $content, $src);
-    $prep->execute();
-    $answer = "Upload erfolgreich. Weiterleitung in 5 Sekunden.<br>Link: <a href=\"$redir\">Zurück</a>";
+        $prep->bind_param('siss', $fid, $i, $content, $src);
+        $prep->execute();
+        $answer = "Upload erfolgreich. Weiterleitung in 5 Sekunden.<br>Link: <a href=\"$redir\">Zurück</a>";
+        apilog("log","successfully uploaded file (web) ".$src);
+    }
 }
 
 ?>

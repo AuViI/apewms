@@ -4,6 +4,7 @@
 // Contains credential function:
 // getServer(), getUser(), getPass(), getData(), getBaseDir()
 require("auth.php");
+include("myio.php");
 
 session_start();
 
@@ -61,6 +62,7 @@ function checkLoginData($username, $password){
     $formpw = hash("sha256", "tibyte".$password.$salt);
     // compare form-hash and stored hash-pw
     if($formpw == $dbpassword){
+        apilog("log",$username." logged in");
         return true;
     }
     return false;
