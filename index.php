@@ -50,18 +50,29 @@ $speed = 14;
 ?>]
 if(frames.length==0){
     frames[0]="Es liegen für diesen Ordner keine Inhalte auf dem Server vor.";
+}else{
+	wms.innerHTML = "";
+	for (var image in frames) {
+		if (frames.hasOwnProperty(image)) {
+			wms.innerHTML += image;
+		}
+	}
+	for (var i = 0; i < frames.length; i++) {
+		wms.children[i].setAttribute("class","loading")
+	}
+	wms.children[0].setAttribute("class","full")
 }
-wms.innerHTML = frames[0] + frames[1];
-wms.children[0].setAttribute("class","full")
-wms.children[1].setAttribute("class","loading");
 
 window.setInterval(function(){
         if(num >= frames.length){
             num =0;
         }
-        wms.innerHTML=frames[num] + frames[num%frames.length];
-		wms.children[0].setAttribute("class","full")
-		wms.children[1].setAttribute("class","loading");
+		wms.children[num].setAttribute("class","full")
+		if (num>0){
+			wms.children[(num-1)%frames.length].setAttribute("class","loading");
+		} else {
+			wms.children[frames.length-1].setAttribute("class","loading")
+		}
         num = num+1;
     }, <? echo $speed * 1000; ?>);
 </script>
