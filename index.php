@@ -52,9 +52,9 @@ if(frames.length==0){
     frames[0]="Es liegen für diesen Ordner keine Inhalte auf dem Server vor.";
 }else{
 	wms.innerHTML = "";
-	for (var image in frames) {
-		if (frames.hasOwnProperty(image)) {
-			wms.innerHTML += image;
+	for (var imgid in frames) {
+		if (frames.hasOwnProperty(imgid)) {
+			wms.innerHTML += frames[imgid];
 		}
 	}
 	for (var i = 0; i < frames.length; i++) {
