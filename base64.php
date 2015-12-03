@@ -6,7 +6,6 @@ function sendError(){
 }
 
 include("./interface/exec/pulllib.php");
-include("./interface/exec/string.php");
 include("./interface/exec/image.php");
 $valid=directCheckSessionData();
 // HARDCODE, bc i fucked up
