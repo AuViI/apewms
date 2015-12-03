@@ -13,7 +13,7 @@ function apilog($type, $data){
 
 if (isset($_GET["t"]) && isset($_GET["d"])) {
     echo apilog($_GET["t"],$_GET["d"]);
-} else {
+} else if (!isset($_POST["function"])) {
     echo "<pre>".file_get_contents(getBaseDir().$logname)."</pre>";
 }
 
