@@ -1,7 +1,8 @@
 <?
 
-include("../interface/exec/pulllib.php");
+require("../interface/exec/pulllib.php");
 include("../interface/exec/string.php");
+include("../interface/exec/myio.php")
 $valid = apilogin();
 
 function apiprintall(){
@@ -28,6 +29,7 @@ if (isset($_POST["function"])){
         } else {
             echo "invalid";
         }
+        apilog("api", "pinged from ".$_SERVER["REMOTE_ADDR"]);
         return;
     }
 
@@ -45,6 +47,7 @@ if (isset($_POST["function"])){
         $prep->fetch();
         $con->close();
         echo $count;
+        apilog("api","count ".$_POST["target"]);
         return;
     }
 
@@ -80,8 +83,10 @@ if (isset($_POST["function"])){
                 $prep->execute();
                 apiprint("executed");
                 $con->close();
+                apilog("log","uploaded: ". mysql_real_escape_string($filename));
             } else {
                 apiprint("upload failed");
+                apilog("error", "failed uploading file");
             }
         }
         return;
@@ -107,6 +112,7 @@ if (isset($_POST["function"])){
             $prep->bind_param('s', $_POST["target"]);
             $prep->execute();
             $con->close();
+            apilog("log","deleted ".$s);
         }
     }
 
@@ -130,6 +136,7 @@ if (isset($_POST["function"])){
             $json = str_replace(",}","}",$json);
             $json = str_replace(",]","]",$json);
             echo $json;
+            apilog("log", "created table json for ".$tbl);
         }
     }
 }
