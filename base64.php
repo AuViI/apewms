@@ -30,9 +30,11 @@ if($valid && isset($_GET["fid"])){
     <!-- 1. Download vom Server, 2. Neuladen nach zwei Stunden -->
     <meta http-equiv="expires" content="0;">
     <meta http-equiv="refresh" content="7200;"> <!-- 7200 = 2h -->
-	<link rel="stylesheet" type="text/css" href="anzeige.css">
 </head>
 <body>
+<style media="screen">
+	<? echo file_get_contents("anzeige.css") ?>
+</style>
 <div id="wms">
 
 </div>
