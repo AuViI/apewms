@@ -1,6 +1,6 @@
 <?
 
-require("../interface/exec/pulllib.php");
+include("../interface/exec/pulllib.php");
 include("../interface/exec/string.php");
 include("../interface/exec/myio.php");
 $valid = apilogin();
