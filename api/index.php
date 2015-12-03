@@ -1,7 +1,6 @@
 <?
 
 include("../interface/exec/pulllib.php");
-include("../interface/exec/myio.php");
 $valid = apilogin();
 
 function apiprintall(){
