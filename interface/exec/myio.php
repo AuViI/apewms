@@ -1,7 +1,7 @@
 <?
 
-require_once("auth.php");
-require_once("string.php");
+include("auth.php");
+include("string.php");
 
 $logname = "wms.log";
 
