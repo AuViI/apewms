@@ -3,7 +3,6 @@
 
 // Contains credential function:
 // getServer(), getUser(), getPass(), getData(), getBaseDir()
-include("auth.php");
 include("myio.php");
 
 session_start();
