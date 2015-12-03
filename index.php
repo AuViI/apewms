@@ -51,15 +51,18 @@ $speed = 14;
 if(frames.length==0){
     frames[0]="Es liegen für diesen Ordner keine Inhalte auf dem Server vor.";
 }
-wms.innerHTML = frames[0];
-
+wms.innerHTML = frames[0] + frames[1];
+wms.children[0].setAttribute("class","full")
+wms.children[1].setAttribute("class","loading");
 
 window.setInterval(function(){
         if(num >= frames.length){
             num =0;
         }
-        wms.innerHTML=frames[num];
-        num= num+1;
+        wms.innerHTML=frames[num] + frames[num%frames.length];
+		wms.children[0].setAttribute("class","full")
+		wms.children[1].setAttribute("class","loading");
+        num = num+1;
     }, <? echo $speed * 1000; ?>);
 </script>
 </html>
