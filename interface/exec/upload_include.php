@@ -23,15 +23,15 @@
         </tr>
         <tr>
             <td>Url Eingabe</td>
-            <td><input type="text" name="url" id="remotelink" disabled></td>
+            <td><input type="text" name="url" id="remotelink" onkeyup="javascript:datein()" disabled></td>
         </tr>
         <tr>
             <td>Datei Upload</td>
-            <td><input type="file" name="userfile" id="fileupload" disabled ></td>
+            <td><input type="file" name="userfile" id="fileupload" onchange="javascript:datein()" disabled ></td>
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Hinzufügen"></td>
+            <td><input type="submit" value="Hinzufügen" name="submitbtn" id="submitbtn"></td>
         </tr>
     </table>
     <input type="hidden" name="fid" value="<?echo $_GET["fid"];?>">
@@ -40,6 +40,7 @@
 <script type="text/javascript">
     var fileupload = document.getElementById("fileupload");
     var remotelink = document.getElementById("remotelink");
+    var submitbtn = document.getElementById("submitbtn");
     function selremote(){
         remotelink.disabled=false;
         fileupload.disabled=true;
@@ -48,6 +49,10 @@
         remotelink.disabled=true;
         fileupload.disabled=false;
     }
+    function datein(){
+        submitbtn.disabled=false;
+    }
+    submitbtn.disabled=true;
 </script >
 <?
 
