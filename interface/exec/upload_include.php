@@ -44,10 +44,12 @@
     function selremote(){
         remotelink.disabled=false;
         fileupload.disabled=true;
+        submitbtn.disabled=true;
     }
     function selupload(){
         remotelink.disabled=true;
         fileupload.disabled=false;
+        submitbtn.disabled=true;
     }
     function datein(){
         submitbtn.disabled=false;
