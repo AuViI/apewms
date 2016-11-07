@@ -31,7 +31,7 @@ if($remote){
     println($uploadfile);
     if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
         if (endsWith(strtolower($filename), "pdf")) {
-            $o1 = shell_exec("convert -density 300 $uploadfile $uploadfile.jpg > /dev/null &");
+            $o1 = shell_exec("convert -density 300 $uploadfile $uploadfile.jpg");
             $filename = $filename.".jpg";
             unlink($uploadfile);
             $uploadfile .= ".jpg";
