@@ -31,12 +31,12 @@ if($remote){
     println($uploadfile);
     if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
         if (endsWith(strtolower($filename), "pdf")) {
-            $o1 = shell_exec("convert -density 300 $uploadfile $uploadfile.jpg");
+            $o1 = shell_exec("convert -density 300 $uploadfile $uploadfile.jpg > /dev/null &");
             $filename = $filename.".jpg";
             unlink($uploadfile);
             $uploadfile .= ".jpg";
         } else {
-            $o2 = shell_exec("mogrify -resize 1920x1080\\> -quality 60 $uploadfile");
+            $o2 = shell_exec("mogrify -resize 1920x1080\\> -quality 60 $uploadfile > /dev/null &");
         }
         $src="data/$dir/$filename";
         $content = "<iframe src='$src' class='full'></iframe>";
