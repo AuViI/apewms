@@ -23,13 +23,21 @@ if($remote){
         }
     }
 } else {
-    $uploaddir = '../../data/'.$dir . "/";
+    $uploaddir = '../../data/' . $dir . "/";
     $filename = basename($_FILES['userfile']['name']);
     $uploadfile = $uploaddir . $filename;
     println($uploaddir);
     println($filename);
     println($uploadfile);
     if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
+        if (endsWith(strtolower($filename), "pdf") {
+            $o1 = shell_exec("convert -density 300 $uploadfile $uploadfile.jpg");
+            $filename = $filename.".jpg";
+            unlink($uploadfile);
+            $uploadfile .= ".jpg";
+        } else {
+            $o2 = shell_exec("mogrify -resize 1920x1080\\> -quality 60 $uploadfile");
+        }
         $src="data/$dir/$filename";
         $content = "<iframe src='$src' class='full'></iframe>";
         foreach ($imgs as $key => $value) {

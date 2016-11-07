@@ -7,6 +7,7 @@ include("./exec/pulllib.php");
 $login = validLogin();
 if (!$login){
     header("Location: ../interface/");
+    header("Content-Type: text/html");
 }
 ?>
 <!DOCTYPE html>
