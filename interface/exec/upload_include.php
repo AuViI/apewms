@@ -1,4 +1,4 @@
-<?
+<?php
 
 ?>
 <style type="text/css">
@@ -34,8 +34,8 @@
             <td><input type="submit" value="Hinzufügen" name="submitbtn" id="submitbtn"></td>
         </tr>
     </table>
-    <input type="hidden" name="fid" value="<?echo $_GET["fid"];?>">
-    <input type="hidden" name="folder" value="<?echo substr($_GET["folder"],0,strpos($_GET["folder"]," "));?>">
+    <input type="hidden" name="fid" value="<?php echo $_GET["fid"];?>">
+    <input type="hidden" name="folder" value="<?php echo substr($_GET["folder"],0,strpos($_GET["folder"]," "));?>">
 </form>
 <script type="text/javascript">
     var fileupload = document.getElementById("fileupload");
@@ -56,6 +56,6 @@
     }
     submitbtn.disabled=true;
 </script >
-<?
+<?php
 
 ?>

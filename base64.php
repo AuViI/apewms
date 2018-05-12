@@ -1,4 +1,4 @@
-<?
+<?php
 # Data: username 	-> speed
 # 		fid 		-> folder
 function sendError(){
@@ -32,7 +32,7 @@ if($valid && isset($_GET["fid"])){
 </head>
 <body>
 <style media="screen">
-	<? echo file_get_contents("anzeige.css") ?>
+	<?php echo file_get_contents("anzeige.css") ?>
 </style>
 <div id="wms">
 
@@ -41,7 +41,7 @@ if($valid && isset($_GET["fid"])){
 <script type="text/javascript">
 var num = 0;
 var wms = document.getElementById("wms");
-var frames = [<?
+var frames = [<?php
 foreach ($frames as $key => $frame) {
     print("\"".pathToBase64($frame)."\",");
 }
@@ -61,6 +61,6 @@ window.setInterval(function(){
         }
         wms.innerHTML=frames[num];
         num= num+1;
-    }, <? echo $speed * 1000; ?>);
+    }, <?php echo $speed * 1000; ?>);
 </script>
 </html>

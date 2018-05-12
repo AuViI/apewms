@@ -1,4 +1,4 @@
-<?
+<?php
 
 function pathToBase64($path){
 	$type = pathinfo($path, PATHINFO_EXTENSION);

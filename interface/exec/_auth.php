@@ -1,4 +1,4 @@
-<?
+<?php
 ## Fill with your data, and rename to "auth.php"
 function getServer(){
     return "localhost";

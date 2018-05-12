@@ -1,4 +1,4 @@
-<?
+<?php
 # Data: username 	-> speed
 # 		fid 		-> folder
 function sendError(){
@@ -39,7 +39,7 @@ if($valid && isset($_GET["fid"])){
 <script type="text/javascript">
 var num = 0;
 var wms = document.getElementById("wms");
-var frames = [<?
+var frames = [<?php
 foreach ($frames as $key => $frame) {
     print("\"".$frame."\",");
 }
@@ -76,6 +76,6 @@ window.setInterval(function(){
 			wms.children[frames.length-1].setAttribute("class","loading");
 		}
         num = num+1;
-    }, <? echo $speed * 1000; ?>);
+    }, <?php echo $speed * 1000; ?>);
 </script>
 </html>

@@ -1,4 +1,4 @@
-<?
+<?php
 // FIXME correct spelling, lowercase
 
 // Contains credential function:
@@ -48,7 +48,7 @@ function checkLoginData($username, $password){
     // get user salt
     $con = getCon();
     if ($con->connect_error) {
-        echo "Database Error";
+        echo "Database Error (Connect: Check Login)";
     }
     $prep = $con->prepare('SELECT pw, salt FROM logins WHERE username = ? ');
     $prep->bind_param('s',$username);
@@ -71,7 +71,7 @@ function checkLoginData($username, $password){
 function checkSessionData($username, $session){
     $con = getCon();
     if ($con->connect_error) {
-        echo "Database Error";
+        echo "Database Error (Connect: Check Session)";
     }
     $prep = $con->prepare('SELECT session FROM logins WHERE username = ?');
     $prep->bind_param('s', $username);

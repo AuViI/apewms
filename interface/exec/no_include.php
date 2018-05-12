@@ -1,4 +1,4 @@
-<?
+<?php
 //include("pulllib.php"); if getCon not found...
 if(isset($_POST["newDir"])){
     $dir = $_POST["newDir"];
@@ -30,6 +30,6 @@ echo getcwd();
         </tr>
     </table>
 </form>
-<?
+<?php
 
 ?>

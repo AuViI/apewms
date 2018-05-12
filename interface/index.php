@@ -1,11 +1,11 @@
-<?
+<?php
 include("./exec/pulllib.php");
 ?>
 <!DOCTYPE html>
 <html>
 <head>
     <title>WMS-Interface</title>
-    <? echo file_get_contents("./html/head.html"); ?>
+    <?php echo file_get_contents("./html/head.html"); ?>
 </head>
 <body>
     <div id="holder">

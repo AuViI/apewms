@@ -1,4 +1,4 @@
-<?
+<?php
 include("pulllib.php");
 
 $fid = $_POST["fid"];                   // folder id
@@ -73,9 +73,9 @@ if(!$fail){
 <html>
 <head>
     <title>Datei Upload</title>
-    <meta http-equiv="refresh" content="5; URL=<? echo $redir; ?>">
+    <meta http-equiv="refresh" content="5; URL=<?php echo $redir; ?>">
 </head>
 <body>
-    <? echo $answer; ?>
+    <?php echo $answer; ?>
 </body>
 </html>

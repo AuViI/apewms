@@ -1,4 +1,4 @@
-<?
+<?php
 
 // array(array(id, content, src, created))
 $fileInfo = getInfoFilesInFolderSQL($_GET["fid"]);
@@ -17,7 +17,7 @@ Hinweis: Aus Securitygründen funktionieren die Links auf fremde Ressources nich
         <th>Hinzugefügt</th>
         <th>Löschen</th>
     </tr>
-    <?
+    <?php
     foreach ($fileInfo as $num => $info) {
         print("<tr>");
         print("<td>".$info[0]."</td>");
@@ -29,7 +29,7 @@ Hinweis: Aus Securitygründen funktionieren die Links auf fremde Ressources nich
      ?>
 </table>
 </form>
-<?
+<?php
 
 
 ?>

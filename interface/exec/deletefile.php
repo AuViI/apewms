@@ -1,4 +1,4 @@
-<?
+<?php
 
 include("pulllib.php");
 println( "Trying to validate");
@@ -40,7 +40,7 @@ println("Zurück: <a href=\"$back\">Link</a>. Redirect in 5 Sekunden.");
 <html>
 <head>
     <title>Datei gelöscht</title>
-    <meta http-equiv="refresh" content="5; URL=<? echo htmlspecialchars($back); ?>">
+    <meta http-equiv="refresh" content="5; URL=<?php echo htmlspecialchars($back); ?>">
 </head>
 <body>
 

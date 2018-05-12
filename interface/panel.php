@@ -1,4 +1,4 @@
-<?
+<?php
 include("./exec/pulllib.php");
 
 
@@ -14,13 +14,13 @@ if (!$login){
 <html>
 <head>
     <title>WMS-Interface</title>
-    <? echo file_get_contents("./html/head.html"); ?>
+    <?php echo file_get_contents("./html/head.html"); ?>
 </head>
 <body>
     <div id="holder">
-        <div id="menu"><? buildMenu(); ?></div>
+        <div id="menu"><?php buildMenu(); ?></div>
         <div id="page">
-        <?
+        <?php
             if(isset($_GET["folder"])){
                 echo "<h2>Ordner: ".$_GET["folder"]."</h2>";
                 if(isset($_GET["fid"])){

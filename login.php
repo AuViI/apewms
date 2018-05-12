@@ -1,4 +1,4 @@
-<?
+<?php
 include("./interface/exec/pulllib.php");
 
 function verifyEncryptPw($username, $pdbpassword){

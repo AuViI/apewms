@@ -1,4 +1,4 @@
-<?
+<?php
 if(isset($_POST["newUser"])){
     //used thingy
     $newusername = $_POST["newUser"];
@@ -95,6 +95,6 @@ echo "Nutzer über folgende Form hinzufügen:";
     </script>
 </form>
 <br>Benutzername und Password müssen mehr als drei Zeichen lang sein.
-<?
+<?php
 
 ?>
